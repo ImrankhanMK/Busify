@@ -1,0 +1,37 @@
+.home-container {
+    background-image: url(../../public/images/homebg.jpg);
+    background-size: cover;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+.home-container::-webkit-scrollbar {
+    display: none;
+}
+.navbar-custom {
+    border-bottom: 1px solid #ffffff5b;
+}
+.navbar-custom ul li a {
+    color: #fff;
+}
+.navbar-custom .login-btn {
+    background-color: yellow;
+    padding: 5px 25px !important;
+    color: black;
+    border-radius: 50px;
+    text-decoration: none;
+}
+.navbar-custom .login-btn:hover {
+    border: 1px solid #fff;
+    color: #fff;
+     background-color:transparent !important;
+     margin: 0;
+     padding: 0;
+}
+.section {
+    min-height: 100vh;
+    padding-top: 120px;
+    display: flex;
+    align-items: center;
+    color: yellow;
+}
