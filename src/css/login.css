@@ -1,0 +1,160 @@
+/* ============================= */
+/*        MAIN WRAPPER           */
+/* ============================= */
+
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: yellow;
+  overflow: hidden;
+}
+
+/* ============================= */
+/*     DIAGONAL BACKGROUND       */
+/* ============================= */
+
+.login-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 100%;
+  background: #1e3a5f;
+  left: 0;
+  top: 0;
+  clip-path: polygon(0 0, 75% 0, 60% 100%, 0% 100%);
+  z-index: 0;
+}
+
+/* ============================= */
+/*           CARD                */
+/* ============================= */
+
+.login-card {
+  width: 900px;
+  height: 550px;
+  display: flex;
+  border-radius: 15px;
+  overflow: hidden;
+  background: white;
+  border: 1px solid yellow;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Flip layout for Signup */
+.signup-card {
+  flex-direction: row-reverse;
+}
+
+/* ============================= */
+/*         IMAGE SIDE            */
+/* ============================= */
+
+.login-image {
+  flex: 2;
+  background-image: url("/images/homebg.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Optional dark overlay for better text visibility */
+.login-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Text over image */
+.overlay-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+}
+
+.overlay-text h4 {
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.overlay-text h3 {
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+/* ============================= */
+/*          FORM SIDE            */
+/* ============================= */
+
+.login-form {
+  flex: 1;
+  background: #1e3a5f;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Form spacing */
+.login-form form {
+  width: 100%;
+}
+
+/* Input styling */
+.login-form input {
+  border-radius: 20px;
+  border: none;
+  padding: 10px 15px;
+}
+
+/* Button styling */
+.login-form button {
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* Light button override */
+.login-form .btn-light {
+  background: white;
+  color: #1e3a5f;
+}
+
+/* ============================= */
+/*         RESPONSIVE            */
+/* ============================= */
+
+@media (max-width: 992px) {
+  .login-card {
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-card {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .signup-card {
+    flex-direction: column;
+  }
+
+  .login-image {
+    height: 220px;
+    flex: none;
+  }
+
+  .login-wrapper::before {
+    display: none;
+  }
+}
