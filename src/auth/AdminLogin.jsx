@@ -1,0 +1,85 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../css/login.css"; 
+
+export default function AdminLogin() {
+  const [adminId, setAdminId] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleAdminLogin = (e) => {
+    e.preventDefault();
+
+    if (!adminId || !password) {
+      return alert("Please fill all fields");
+    }
+
+    if (adminId === "admin" && password === "admin") {
+      alert("Welcome Admin!");
+      navigate("/admin-dashboard"); // change if needed
+    } else {
+      alert("Invalid Admin Credentials");
+    }
+  };
+
+  return (
+    <div className="login-wrapper">
+      <div className="login-card">
+
+        {/* LEFT IMAGE SECTION */}
+        <div className="login-image">
+          <div className="overlay-text">
+            <h4>ADMIN CONTROL PANEL</h4>
+            <h4>MANAGE YOUR</h4>
+            <h3>BUSIFY SYSTEM</h3>
+          </div>
+        </div>
+
+        {/* RIGHT FORM SECTION */}
+        <div className="login-form p-5">
+          <h3 className="text-center mb-4">Admin Login</h3>
+
+          <form onSubmit={handleAdminLogin}>
+            <div className="mb-3">
+              <label>Admin ID</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter Admin ID"
+                value={adminId}
+                onChange={(e) => setAdminId(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label>Password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Enter Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            <button type="submit" className="btn btn-warning w-100">
+              Login as Admin
+            </button>
+          </form>
+
+          <hr />
+
+          <button
+            className="btn btn-light w-100"
+            onClick={() => navigate("/login")}
+          >
+            Back to User Login
+          </button>
+
+        </div>
+      </div>
+    </div>
+  );
+}
