@@ -28,7 +28,7 @@ export default function AuthPage() {
   }
 
   alert(`Welcome ${data.name}!`);
-  navigate("/"); // or navigate based on role if you add a role column
+  navigate("/user-dashboard"); // or navigate based on role if you add a role column
 };
   return (
   <div className="login-wrapper">
@@ -88,7 +88,7 @@ export default function AuthPage() {
           </button>
 
           <button
-            className="btn btn-warning"
+            className="btn btn-primary"
             onClick={() => navigate("/admin-login")}
           >
             Admin Login
