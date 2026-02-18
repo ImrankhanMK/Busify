@@ -1,29 +1,25 @@
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import './App.css'
-import Home from './pages/Home';
-import Login from './auth/Login';
-import Signup from './auth/SignUp';
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Home from "./pages/Home";
+import Login from "./auth/Login";
+import Signup from "./auth/SignUp";
 import AdminLogin from "./auth/AdminLogin";
-import Admin from "./pages/Admin";
 import User from "./pages/User";
 
-function App() {
 
+function App() {
   return (
-    <>
-     <Router>
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/admin-login" element={<AdminLogin />} />
-        <Route path="/admin-dashboard" element={<Admin />} />
         <Route path="/user-dashboard" element={<User />} />
       </Routes>
     </Router>
-     
-    </>
-  )
+  );
 }
 
-export default App
+export default App;
