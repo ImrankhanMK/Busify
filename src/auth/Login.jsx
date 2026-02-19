@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/login.css";
 import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from "firebase/auth";
 import { auth } from "../services/Firebase";
+import { useAuth } from "../auth/AuthContext";
+import { Link } from "react-router-dom";
+
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -10,6 +13,13 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const { user } = useAuth();
+
+  useEffect(() => {
+  if (user) {
+    navigate("/user-dashboard");
+  }
+}, [user]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -60,6 +70,9 @@ export default function LoginPage() {
     <div className="login-wrapper">
       <div className="login-card shadow-lg">
         <div className="login-image">
+            <Link to="/" className="home-icon">
+    <i className="bi bi-house-door-fill"></i>
+  </Link>
           <div className="overlay-text">
             <h4>TRAVEL IS THE ONLY THING</h4>
             <h4>YOU BUY THAT MAKES YOU</h4>

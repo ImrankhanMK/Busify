@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/login.css";
-import { auth, db } from "../services/Firebase.jsx"; // your firebase setup
+import { auth, db } from "../services/Firebase.jsx";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
+import { signOut } from "firebase/auth";
+import { Link } from "react-router-dom";
+
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -11,36 +14,68 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    setError("");
 
+    // Basic validation
     if (!name || !email || !password) {
-      return alert("Please fill all required fields");
+      return setError("Please fill all required fields.");
+    }
+
+    if (password.length < 6) {
+      return setError("Password must be at least 6 characters.");
     }
 
     try {
       setLoading(true);
 
       // 1️⃣ Create user in Firebase Auth
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
-      // 2️⃣ Save additional info in Firestore
-      await setDoc(doc(db, "users", userCredential.user.uid), {
-        name,
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
         email,
-        phone: phone || null,
+        password
+      );
+
+      const user = userCredential.user;
+
+      // 2️⃣ Create Firestore profile document
+      await setDoc(doc(db, "users", user.uid), {
+        name: name.trim(),
+        email: user.email,
+        phone: phone.trim() || null,
+        role: "user",
         createdAt: new Date(),
       });
 
+      await signOut(auth);
+
+      // 3️⃣ Redirect directly to dashboard (user is already logged in)
+     alert("✅ Registration successful! Please login.");
+     navigate("/login");
+
+    } catch (err) {
+      console.error("Signup error:", err);
+
+      // Friendly error messages
+      switch (err.code) {
+        case "auth/email-already-in-use":
+          setError("This email is already registered.");
+          break;
+        case "auth/invalid-email":
+          setError("Invalid email address.");
+          break;
+        case "auth/weak-password":
+          setError("Password is too weak.");
+          break;
+        default:
+          setError("Something went wrong. Please try again.");
+      }
+    } finally {
       setLoading(false);
-      alert("✅ Registration successful! You can now login.");
-      navigate("/login"); // redirect to login page
-    } catch (error) {
-      setLoading(false);
-      console.error("Registration error:", error);
-      alert(`❌ Error: ${error.message}`);
     }
   };
 
@@ -49,6 +84,13 @@ export default function Signup() {
       <div className="login-card signup-card">
         <div className="login-form p-5">
           <h3 className="text-center mb-4">Create Account</h3>
+
+          {error && (
+            <div className="alert alert-danger text-center">
+              {error}
+            </div>
+          )}
+
           <form onSubmit={handleSignup}>
             <div className="mb-3">
               <label>Name</label>
@@ -60,6 +102,7 @@ export default function Signup() {
                 required
               />
             </div>
+
             <div className="mb-3">
               <label>Email</label>
               <input
@@ -70,6 +113,7 @@ export default function Signup() {
                 required
               />
             </div>
+
             <div className="mb-3">
               <label>Password</label>
               <input
@@ -80,6 +124,7 @@ export default function Signup() {
                 required
               />
             </div>
+
             <div className="mb-3">
               <label>Phone (optional)</label>
               <input
@@ -89,16 +134,30 @@ export default function Signup() {
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>
-            <button type="submit" className="btn btn-success w-100" disabled={loading}>
+
+            <button
+              type="submit"
+              className="btn btn-success w-100"
+              disabled={loading}
+            >
               {loading ? "Creating Account..." : "Create Account"}
             </button>
           </form>
+
           <hr />
-          <button className="btn btn-light w-100 mt-2" onClick={() => navigate("/login")}>
+
+          <button
+            className="btn btn-light w-100 mt-2"
+            onClick={() => navigate("/login")}
+          >
             Back to Login
           </button>
         </div>
+
         <div className="login-image">
+           <Link to="/" className="home-icon">
+    <i className="bi bi-house-door-fill"></i>
+  </Link>
           <div className="overlay-text">
             <h4>START YOUR JOURNEY</h4>
             <h4>WITH</h4>
@@ -109,3 +168,4 @@ export default function Signup() {
     </div>
   );
 }
+

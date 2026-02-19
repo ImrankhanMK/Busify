@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/login.css"; 
+import { Link } from "react-router-dom";
 
 export default function AdminLogin() {
   const [adminId, setAdminId] = useState("");
@@ -28,6 +29,9 @@ export default function AdminLogin() {
 
         {/* LEFT IMAGE SECTION */}
         <div className="login-image">
+          <Link to="/" className="home-icon">
+    <i className="bi bi-house-door-fill"></i>
+  </Link>
           <div className="overlay-text">
             <h4>ADMIN CONTROL PANEL</h4>
             <h4>MANAGE YOUR</h4>

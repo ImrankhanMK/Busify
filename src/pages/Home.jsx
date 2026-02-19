@@ -1,10 +1,21 @@
 import React, { useEffect } from "react";
 import "../css/Home.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../services/Firebase";
+
+
 
 
 
 function Home() {
+   const { user ,userData } = useAuth();
+   const firstName = userData?.name?.split(" ")[0] || "User";
+   console.log("User data in Home:", userData); // 
+   const handleLogout = async () => {
+    await signOut(auth);
+  };
 
 
   return (
@@ -31,9 +42,26 @@ function Home() {
               </li>
             </ul>
             <div>
-              <Link className="login-btn" to="/login">
+              {/* <Link className="login-btn" to="/login">
                 Login
-              </Link>
+              </Link> */}
+              <div>
+  {user ? (
+    <>
+      <Link className="login-btn me-2" to="/user-dashboard">
+          {firstName}
+      </Link>
+      <button className="login-btn" onClick={handleLogout}>
+        Logout
+      </button>
+    </>
+  ) : (
+    <Link className="login-btn" to="/login">
+      Login
+    </Link>
+  )}
+</div>
+
             </div>
           </div>
         </div>

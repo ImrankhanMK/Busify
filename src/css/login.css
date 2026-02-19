@@ -64,7 +64,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* position: relative; */
+
 }
+.login-image .home-icon {
+   position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 24px;
+    z-index: 10; 
+  text-decoration: none;
+  background:transparent;
+  /* border: 1px solid yellow; */
+  color: yellow;
+  padding: 6px 10px;
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+.login-image .home-icon:hover {
+  background: rgba(255, 255, 255, 1);
+  color:  #1e3a5f;
+   /* border: 1px solid yellow; */
+} 
 
 /* Optional dark overlay for better text visibility */
 .login-image::after {
