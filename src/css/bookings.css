@@ -1,0 +1,112 @@
+/* bookings.css */
+
+.bookings-page {
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto; /* allows vertical scrolling */
+  background-color: #f9fafb;
+  min-height: 85vh; /* fits viewport */
+}
+
+.bookings-page h2 {
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 600;
+}
+
+.bookings-table-container {
+  overflow-x: auto; /* horizontal scroll if table is too wide */
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.bookings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bookings-table th,
+.bookings-table td {
+  text-align: left;
+  padding: 10px 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.bookings-table th {
+  background-color: #f1f5f9;
+  font-weight: 600;
+}
+
+.bookings-table tr:hover {
+  background-color: #f3f4f6;
+}
+
+.bookings-table img {
+  width: 60px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.status-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.status-btn.active {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.status-btn.cancelled {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.status-btn:hover {
+  opacity: 0.85;
+}
+
+.action-btn {
+  margin-right: 5px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+
+.action-btn.edit {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.action-btn.delete {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.action-btn:hover {
+  opacity: 0.85;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bookings-table th,
+  .bookings-table td {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+
+  .bookings-table img {
+    width: 50px;
+    height: 35px;
+  }
+}

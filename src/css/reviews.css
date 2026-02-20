@@ -1,0 +1,42 @@
+.reviews-page {
+  height: 85vh; /* viewport height */
+  overflow-y: auto; /* vertical scroll */
+  padding: 20px;
+  background-color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reviews-table-container {
+  overflow-x: auto;
+}
+
+.reviews-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reviews-table th,
+.reviews-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.reviews-table th {
+  background-color: #f3f4f6;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
