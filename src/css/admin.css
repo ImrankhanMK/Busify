@@ -1,114 +1,61 @@
-/* Layout container */
-/* .admin-container {
-  display: flex;
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
-} */
- .admin-container {
-  display: flex;
-  height: 100vh; /* full viewport */
-  overflow: hidden; /* sidebar stays fixed */
-}
-
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background-color: #1f2937; /* dark gray */
-  color: white;
-  flex-shrink: 0;
+.admin-container {
+  height: 100vh;
   display: flex;
   flex-direction: column;
+
+  background-image: url(../../public/images/admin\ bg.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* 🔥 important */
+}
+
+/* HEADER */
+
+.admin-container .admin-header{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+ align-items: center;
+  justify-content:space-between;
   padding: 20px;
 }
-
-.sidebar-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 30px;
+.admin-container .admin-header img{
+ border-radius: 30px;
 }
-
-.sidebar-nav .nav-link {
-  display: block;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background 0.2s;
-}
-
-.sidebar-nav .nav-link:hover {
-  background-color: #374151; /* slightly lighter gray */
-}
-
-/* Main content */
-/* .main-content {
-  flex: 1;
+.admin-container .admin-header .admin-header-links{
   display: flex;
-  flex-direction: column;
-} */
- .main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-/* Topbar */
-.topbar {
-  height: 60px;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: space-between;
+  gap: 40px;
   align-items: center;
-  padding: 0 20px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+   background-color: transparent;
+  backdrop-filter: blur(30px);
+  padding: 10px 50px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  color: white;
+
 }
 
-.page-title {
-  font-size: 20px;
-  font-weight: bold;
+.admin-container .admin-banner .page-title{
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  margin: 0;
+ 
 }
 
-.profile {
-  background-color: #e5e7eb; /* light gray */
-  padding: 5px 15px;
-  border-radius: 20px;
-}
-
-/* Content area */
-/* .content-area {
+/* SCROLL AREA */
+.admin-container .content-area {
   flex: 1;
-  padding: 20px;
-  margin-block: 100px;
   overflow-y: auto;
-  background-color: #f9fafb; 
-  height: 500px;
-} */
- .content-area {
-  flex: 1;
-  height: 0;        /* makes flex child take remaining space */
-  overflow-y: auto; /* scroll happens here */
-  padding: 20px;
-  background-color: #f9fafb;
+  width: 80%;
+  margin: auto;
+  padding: 10px;
+  /* border: 1px solid rgba(255, 255, 255, 0.3); */
 }
 
-/* Responsive: collapse sidebar on small screens */
-@media (max-width: 768px) {
-  .sidebar {
-    position: fixed;
-    left: -250px;
-    top: 0;
-    height: 100%;
-    z-index: 1000;
-    transition: left 0.3s;
-  }
-
-  .sidebar.active {
-    left: 0;
-  }
-
-  .main-content {
-    margin-left: 0;
-  }
+/* Hide scrollbar */
+.admin-container .content-area::-webkit-scrollbar {
+  display: none;
 }

@@ -1,13 +1,4 @@
-/* revenue.css */
 
-/* Container inside content-area */
-/* .revenue-page {
-  height:85vh!important;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  overflow: scroll;
-} */
  .revenue-page {
   min-height: 100%;
   display: flex;
@@ -20,27 +11,33 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  /* background-color: transparent !important; */
 }
 
 .kpi-cards .card {
-  flex: 1 1 200px;
-  background-color: #fff;
+  flex: 1 1 300px;
+  background-color:transparent !important;
+  backdrop-filter: blur(50px);
+  color: #fff;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .kpi-cards .card h3 {
   font-size: 16px;
-  color: #6b7280;
+  /* color: #6b7280; */
+  color: #fff;
   margin-bottom: 10px;
 }
 
 .kpi-cards .card p {
   font-size: 22px;
   font-weight: 600;
-  color: #111827;
+  /* color: #111827; */
+  color: #fff;
 }
 
 /* Filters */
@@ -53,7 +50,8 @@
 .filters label {
   font-size: 14px;
   font-weight: 500;
-  color: #374151;
+  /* color: #374151; */
+  color: #fff;
 }
 
 .filters input[type="date"] {
@@ -62,6 +60,8 @@
   border-radius: 6px;
   border: 1px solid #d1d5db;
   outline: none;
+  /* background-color: transparent; */
+  /* columns: #fff; */
 }
 
 .filters input[type="date"]:focus {
@@ -77,7 +77,7 @@
 }
 
 .chart-container {
-  background-color: #fff;
+  /* background-color: #fff; */
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -85,13 +85,16 @@
 
 /* Table */
 .revenue-table {
-  background-color: #fff;
+  background-color:transparent;
+  backdrop-filter: blur(70px);
+  color: #fff;
   padding: 20px;
   min-height: 250px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   /* height: 500px !important; */
   overflow-x: auto; /* horizontal scroll if needed */
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .revenue-table table {
@@ -110,7 +113,7 @@
 
 .revenue-table table th {
   font-weight: 600;
-  color: #374151;
+  /* color: #374151; */
 }
 
 /* Responsive */

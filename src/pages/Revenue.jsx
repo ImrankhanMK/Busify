@@ -101,6 +101,20 @@ function Revenue() {
           <h3>Average Revenue</h3>
           <p>₹{avgRevenue}</p>
         </div>
+        <div className="card">
+          <h3>Total customers</h3>
+          <p>{totalRevenue}</p>
+          <p>Active {totalRevenue}</p>
+        </div>
+        <div className="card">
+          <h3>Total Buses</h3>
+          <p> {totalBookings}</p>
+          <p> Active{totalBookings}</p>
+        </div>
+        {/* <div className="card">
+          <h3>Active </h3>
+          <p>₹{avgRevenue}</p>
+        </div> */}
       </div>
 
       {/* Filters */}
@@ -126,7 +140,7 @@ function Revenue() {
       {/* Charts */}
       <div className="charts">
         <div className="chart-container">
-          <h4>Revenue Over Time</h4>
+          <h4 className="text-white">Revenue Over Time</h4>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={chartData}>
               <XAxis dataKey="date" />
@@ -138,7 +152,7 @@ function Revenue() {
         </div>
 
         <div className="chart-container">
-          <h4>Top 5 Buses by Revenue</h4>
+          <h4 className="text-white">Top 5 Buses by Revenue</h4>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={topBuses}>
               <XAxis dataKey="bus" />
@@ -150,7 +164,7 @@ function Revenue() {
         </div>
 
         <div className="chart-container">
-          <h4>Top 5 Routes by Revenue</h4>
+          <h4 className="text-white">Top 5 Routes by Revenue</h4>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={topRoutes}>
               <XAxis dataKey="route" />
