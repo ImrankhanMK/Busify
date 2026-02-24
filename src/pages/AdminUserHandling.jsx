@@ -13,7 +13,7 @@ function AdminUserHandling() {
     try {
       const snapshot = await getDocs(collection(db, "users"));
       const usersData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setUsers(usersData);
+      setUsers(usersData.reverse());
     } catch (err) {
       console.error("Error fetching users:", err);
     } finally {
@@ -44,7 +44,7 @@ function AdminUserHandling() {
 
   return (
     <div className="users-page">
-      <h2>All Users</h2>
+      {/* <h2>All Users</h2> */}
       <h3 className="text-white">Total Users : <strong className="text-success">{users.length}</strong></h3>
 
       {users.length === 0 ? (
@@ -75,12 +75,15 @@ function AdminUserHandling() {
                   <td className={user.status === "active" ? "text-warning" : "text-danger"}>{user.status}</td>
                   <td>{new Date(user.createdAt?.seconds * 1000).toLocaleDateString()}</td>
                   <td>
-                    <button
+                    {user.role !== "admin" && (
+                      <button
                       className={`status-btn ${user.status}`}
                       onClick={() => toggleStatus(user.id, user.status)}
                     >
                       {user.status === "active" ? "Block" : "Unblock"}
-                    </button>
+                    </button> 
+                    )}
+                    
                   </td>
                 </tr>
               ))}
